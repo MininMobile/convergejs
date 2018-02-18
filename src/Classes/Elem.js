@@ -10,7 +10,7 @@ class Elem {
 	 * @param {string} type 
 	 * @param {string} tag 
 	 */
-	constructor(type, tag) {
+	constructor(type, tag, setSize = true) {
 		let elementTypes = {
 			"box":"div",
 			"text":"p"
@@ -34,7 +34,7 @@ class Elem {
 
 		this.element.setAttribute("id", tag);
 		this.element.style.position = "absolute";
-		this.size({ height:"100px", width:"100px" });
+		if (setSize) this.size({ height:"100px", width:"100px" });
 		this.move({ x:"0px", y:"0px" });
 	}
 
