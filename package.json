@@ -1,0 +1,11 @@
+{
+  "name": "convergejs",
+  "version": "4.6.10",
+  "description": "A html5-based canvas framework.",
+  "main": "converge.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT"
+}
