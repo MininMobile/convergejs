@@ -31,6 +31,11 @@ class Elem {
 		this.ev.resized = () => {};
 		this.ev.edited = () => {};
 		this.ev.newElem = () => {};
+		this.ev.mouseDown = () => {};
+		this.ev.mouseUp = () => {};
+
+		this.c.addEventListener("pointerdown", this.ev.mouseDown);
+		this.c.addEventListener("pointerup", this.ev.mouseUp);
 
 		this.element.setAttribute("id", tag);
 		this.element.style.position = "absolute";
@@ -156,6 +161,10 @@ class Elem {
 			case "newElem":
 				this.ev.newElem = action;
 				break;
+			case "mouseDown":
+				this.ev.mouseDown = action;
+			case "mouseUp":
+				this.ev.mouseUp = action;
 		}
 	}
 }
