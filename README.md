@@ -17,35 +17,35 @@ Convergejs is a tool for working with graphics on html5 websites. It is simular 
 ```html
 <html>
 <head>
-    <script>const cvg = require("convergejs");</script>
+	<script>const cvg = require("convergejs");</script>
 </head>
 
 <body>
-    <div id="canvas"> </div>
+	<div id="canvas"> </div>
 
-    <script>
-    var canvas = document.getElementById("canvas");
-    var c = new cvg.Canvas(canvas, "600px", "450px", 24);
+	<script>
+	var canvas = document.getElementById("canvas");
+	var c = new cvg.Canvas(canvas, "600px", "450px", 24);
 
-    c.style([["background", "gray"]]);
-    var box = c.new("box", "element");
-    box.style([["background", "blue"]])
-    var i = 0;
+	c.style([["background", "gray"]]);
+	var box = c.new("box", "element");
+	box.style([["background", "blue"]])
+	var i = 0;
 
-    c.on("loop", () => {
-        i += 0.5;
-        box.move({x:(Math.cos(i)*50)+50 + "px"})
-    });
+	c.on("loop", () => {
+		i += 0.5;
+		box.move({x:(Math.cos(i)*50)+50 + "px"})
+	});
 
-    box.on("moved", () => {
-        if (i % 2 == 0) {
-            box.style([["background", "white"]])
-        } else {
-            box.style([["background", "black"]])
-        }
-    });
-    // And More!
-    </script>
+	box.on("moved", () => {
+		if (i % 2 == 0) {
+			box.style([["background", "white"]])
+		} else {
+			box.style([["background", "black"]])
+		}
+	});
+	// And More!
+	</script>
 </body>
 </html>
 ```

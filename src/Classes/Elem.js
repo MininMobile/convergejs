@@ -30,7 +30,7 @@ class Elem {
 		this.ev.moved = () => {};
 		this.ev.resized = () => {};
 		this.ev.edited = () => {};
-        this.ev.newElem = () => {};
+		this.ev.newElem = () => {};
 
 		this.element.setAttribute("id", tag);
 		this.element.style.position = "absolute";
@@ -38,21 +38,21 @@ class Elem {
 		this.move({ x:"0px", y:"0px" });
 	}
 
-    /**
-     * Creates new Child Element in this Elememt
-     * @param {string} type Type of Element
-     * @param {string} tag Name of Element
-     * @returns {Elem} New Child Element
-     */
-    new(type, tag) {
-        let newElement = new Elem(type, tag);
+	/**
+	 * Creates new Child Element in this Elememt
+	 * @param {string} type Type of Element
+	 * @param {string} tag Name of Element
+	 * @returns {Elem} New Child Element
+	 */
+	new(type, tag) {
+		let newElement = new Elem(type, tag);
 
-        this.element.appendChild(newElement.element);
-        this.elementRegister.push(newElement);
+		this.element.appendChild(newElement.element);
+		this.elementRegister.push(newElement);
 
-        this.ev.newElem(newElement);
-        return newElement;
-    }
+		this.ev.newElem(newElement);
+		return newElement;
+	}
 
 	/**
 	 * Change the styling of the Element
@@ -121,18 +121,18 @@ class Elem {
 		return new Point(x, y);
 	}
 
-    /**
-     * Get a Child Element of this Element by Tag
-     * @param {string} tag Name of Element
-     * @returns {Elem} Child Element
-     */
-    getElement(tag) {
-        for (var i = 0; i < this.elementRegister.length; i++) {
-            if(this.elementRegister[i].tag == tag) {
-                return this.elementRegister[i];
-            }
-        }
-    }
+	/**
+	 * Get a Child Element of this Element by Tag
+	 * @param {string} tag Name of Element
+	 * @returns {Elem} Child Element
+	 */
+	getElement(tag) {
+		for (var i = 0; i < this.elementRegister.length; i++) {
+			if(this.elementRegister[i].tag == tag) {
+				return this.elementRegister[i];
+			}
+		}
+	}
 
 	/**
 	 * Execute Function on Event

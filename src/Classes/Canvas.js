@@ -5,109 +5,109 @@ const Cube = require("./Cube");
  * Main Canvas
  */
 class Canvas {
-    /**
-     * Initialize Canvas Element
-     * @param {Element} element
-     * @param {string} width 200px
-     * @param {string} height 100px
-     * @param {fps} fps 30fps
-     */
-    constructor(element, width = "200px", height = "100px", fps = 30) {
-        /** @type {Element} */
-        this.c = element;
+	/**
+	 * Initialize Canvas Element
+	 * @param {Element} element
+	 * @param {string} width 200px
+	 * @param {string} height 100px
+	 * @param {fps} fps 30fps
+	 */
+	constructor(element, width = "200px", height = "100px", fps = 30) {
+		/** @type {Element} */
+		this.c = element;
 
-        /** @type {string} */
-        this.c.style.width = width;
-        /** @type {string} */
-        this.c.style.height = height;
+		/** @type {string} */
+		this.c.style.width = width;
+		/** @type {string} */
+		this.c.style.height = height;
 
-        /** @type {number} */
-        this.fps = fps;
+		/** @type {number} */
+		this.fps = fps;
 
-        /** @type {string[]} */
-        this.elementRegister = [ ];
+		/** @type {string[]} */
+		this.elementRegister = [ ];
 
-        this.ev = {};
-        this.ev.styled = () => {};
-        this.ev.newElem = () => {};
-        this.ev.loop = () => {};
-        this.ev.onClick = () => {};
-        this.ev.onKeyDown = () => {};
-        this.ev.onKeyUp = () => {};
+		this.ev = {};
+		this.ev.styled = () => {};
+		this.ev.newElem = () => {};
+		this.ev.loop = () => {};
+		this.ev.onClick = () => {};
+		this.ev.onKeyDown = () => {};
+		this.ev.onKeyUp = () => {};
 
-        setInterval(() => { this.ev.loop(); }, 1000/this.fps)
-    }
+		setInterval(() => { this.ev.loop(); }, 1000/this.fps)
+	}
 
-    /**
-     * Change the styling of the Canvas
-     * @param {string[][]} style Object
-     * @description Example Input: [["background", "pink"], ["color", "blue"]]
-     */
-    style(style) {
-        for (let i = 0; i < style.length; i++) {
-            this.c.style.setProperty(style[i][0], style[i][1]);
-        }
+	/**
+	 * Change the styling of the Canvas
+	 * @param {string[][]} style Object
+	 * @description Example Input: [["background", "pink"], ["color", "blue"]]
+	 */
+	style(style) {
+		for (let i = 0; i < style.length; i++) {
+			this.c.style.setProperty(style[i][0], style[i][1]);
+		}
 
-        this.ev.styled(style);
-    }
+		this.ev.styled(style);
+	}
 
-    /**
-     * Creates new Element in Canvas
-     * @param {string} type Type of Element
-     * @param {string} tag Name of Element
-     * @returns {Elem} New Element
-     */
-    new(type, tag) {
-        let newElement = new Elem(type, tag);
+	/**
+	 * Creates new Element in Canvas
+	 * @param {string} type Type of Element
+	 * @param {string} tag Name of Element
+	 * @returns {Elem} New Element
+	 */
+	new(type, tag) {
+		let newElement = new Elem(type, tag);
 
-        this.c.appendChild(newElement.element);
-        this.elementRegister.push(newElement);
+		this.c.appendChild(newElement.element);
+		this.elementRegister.push(newElement);
 
-        this.ev.newElem(newElement);
-        return newElement;
-    }
+		this.ev.newElem(newElement);
+		return newElement;
+	}
 
-    /**
-     * Get the Width and Height of the Canvas (In Pixels)
-     * @returns {Cube} X, Y and Z
-     */
-    getSize() {
-        let x = parseInt(this.c.offsetWidth, 10);
-        let y = parseInt(this.c.offsetHeight, 10);
-        return new Cube(x, y);
-    }
+	/**
+	 * Get the Width and Height of the Canvas (In Pixels)
+	 * @returns {Cube} X, Y and Z
+	 */
+	getSize() {
+		let x = parseInt(this.c.offsetWidth, 10);
+		let y = parseInt(this.c.offsetHeight, 10);
+		return new Cube(x, y);
+	}
 
-    /**
-     * Get a Canvas Element by Tag
-     * @param {string} tag Name of Element
-     * @returns {Elem} Canvas Element
-     */
-    getElement(tag) {
-        for (var i = 0; i < this.elementRegister.length; i++) {
-            if(this.elementRegister[i].tag == tag) {
-                return this.elementRegister[i];
-            }
-        }
-    }
+	/**
+	 * Get a Canvas Element by Tag
+	 * @param {string} tag Name of Element
+	 * @returns {Elem} Canvas Element
+	 */
+	getElement(tag) {
+		for (var i = 0; i < this.elementRegister.length; i++) {
+			if(this.elementRegister[i].tag == tag) {
+				return this.elementRegister[i];
+			}
+		}
+	}
 
-    /**
-     * Execute Function on Event
-     * @param {string} event Event to Perform to
-     * @param {function} action Function to run
-     */
-    on(event, action) {
-        switch (event) {
-            case "styled":
-                this.ev.styled = action;
-                break;
-            case "newElem":
-                this.ev.newElem = action;
-                break;
-            case "loop":
-                this.ev.loop = action;
-                break;
-        }
-    }
+	/**
+	 * Execute Function on Event
+	 * @param {string} event Event to Perform to
+	 * @param {function} action Function to run
+	 */
+	on(event, action) {
+		switch (event) {
+			case "styled":
+				this.ev.styled = action;
+				break;
+			case "newElem":
+				this.ev.newElem = action;
+				break;
+			case "loop":
+				this.ev.loop = action;
+				break;
+		}
+	}
 }
 
 module.exports = Canvas;
