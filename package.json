@@ -1,6 +1,6 @@
 {
   "name": "convergejs",
-  "version": "4.7.10",
+  "version": "4.8.10",
   "description": "A html5-based canvas framework.",
   "main": "converge.js",
   "scripts": {
