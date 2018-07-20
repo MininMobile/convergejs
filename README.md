@@ -24,13 +24,13 @@ Convergejs is a tool for working with graphics on html5 websites. It is simular 
 	<div id="canvas"> </div>
 
 	<script>
-	var canvas = document.getElementById("canvas");
-	var c = new cvg.Canvas(canvas, "600px", "450px", 24);
+	let canvas = document.getElementById("canvas");
+	let c = new cvg.Canvas(canvas, "600px", "450px", 24);
 
 	c.style([["background", "gray"]]);
-	var box = c.new("box", "element");
+	let box = c.new("box", "element");
 	box.style([["background", "blue"]])
-	var i = 0;
+	let i = 0;
 
 	c.on("loop", () => {
 		i += 0.5;
