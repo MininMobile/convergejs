@@ -27,12 +27,15 @@ class Canvas {
         /** @type {string[]} */
         this.elementRegister = [ ];
 
-        this.events = {};
-        this.events.styled = () => {};
-        this.events.newElem = () => {};
-        this.events.loop = () => {};
+        this.ev = {};
+        this.ev.styled = () => {};
+        this.ev.newElem = () => {};
+        this.ev.loop = () => {};
+        this.ev.onClick = () => {};
+        this.ev.onKeyDown = () => {};
+        this.ev.onKeyUp = () => {};
 
-        setInterval(() => { this.events.loop(); }, 1000/this.fps)
+        setInterval(() => { this.ev.loop(); }, 1000/this.fps)
     }
 
     /**
@@ -45,7 +48,7 @@ class Canvas {
             this.c.style.setProperty(style[i][0], style[i][1]);
         }
 
-        this.events.styled(style);
+        this.ev.styled(style);
     }
 
     /**
@@ -60,7 +63,7 @@ class Canvas {
         this.c.appendChild(newElement.element);
         this.elementRegister.push(newElement);
 
-        this.events.newElem(newElement);
+        this.ev.newElem(newElement);
         return newElement;
     }
 
@@ -95,13 +98,13 @@ class Canvas {
     on(event, action) {
         switch (event) {
             case "styled":
-                this.events.styled = action;
+                this.ev.styled = action;
                 break;
             case "newElem":
-                this.events.newElem = action;
+                this.ev.newElem = action;
                 break;
             case "loop":
-                this.events.loop = action;
+                this.ev.loop = action;
                 break;
         }
     }

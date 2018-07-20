@@ -25,12 +25,12 @@ class Elem {
 		/** @type {string[]} */
 		this.elementRegister = [ ];
 
-		this.events = {};
-		this.events.styled = () => {};
-		this.events.moved = () => {};
-		this.events.resized = () => {};
-		this.events.edited = () => {};
-        this.events.newElem = () => {};
+		this.ev = {};
+		this.ev.styled = () => {};
+		this.ev.moved = () => {};
+		this.ev.resized = () => {};
+		this.ev.edited = () => {};
+        this.ev.newElem = () => {};
 
 		this.element.setAttribute("id", tag);
 		this.element.style.position = "absolute";
@@ -50,7 +50,7 @@ class Elem {
         this.element.appendChild(newElement.element);
         this.elementRegister.push(newElement);
 
-        this.events.newElem(newElement);
+        this.ev.newElem(newElement);
         return newElement;
     }
 
@@ -64,7 +64,7 @@ class Elem {
 			this.element.style.setProperty(style[i][0], style[i][1]);
 		}
 
-		this.events.styled(style);
+		this.ev.styled(style);
 	}
 
 	/**
@@ -76,7 +76,7 @@ class Elem {
 		if (resolution.width != undefined) this.element.style.width = resolution.width;
 		if (resolution.height != undefined) this.element.style.height = resolution.height;
 
-		this.events.resized(resolution);
+		this.ev.resized(resolution);
 	}
 
 	/**
@@ -88,7 +88,7 @@ class Elem {
 		if (amount.x != undefined) this.element.style.left = amount.x;
 		if (amount.y != undefined) this.element.style.top = amount.y;
 
-		this.events.moved(amount);
+		this.ev.moved(amount);
 	}
 
 	/**
@@ -98,7 +98,7 @@ class Elem {
 	content(text) {
 		this.element.textContent = text;
 
-		this.events.edited(text);
+		this.ev.edited(text);
 	}
 
 	/**
@@ -142,19 +142,19 @@ class Elem {
 	on(event, action) {
 		switch (event) {
 			case "styled":
-				this.events.styled = action;
+				this.ev.styled = action;
 				break;
 			case "moved":
-				this.events.moved = action;
+				this.ev.moved = action;
 				break;
 			case "resized":
-				this.events.resized = action;
+				this.ev.resized = action;
 				break;
 			case "edited":
-				this.events.edited = action;
+				this.ev.edited = action;
 				break;
 			case "newElem":
-				this.events.newElem = action;
+				this.ev.newElem = action;
 				break;
 		}
 	}
