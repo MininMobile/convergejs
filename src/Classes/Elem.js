@@ -16,6 +16,9 @@ class Elem {
 			"text":"p"
 		}
 
+		/** @type {DOMTokenList} */
+		this.classes = this.element.classList;
+
 		/** @type {string} */
 		this.tag = tag;
 
@@ -70,6 +73,17 @@ class Elem {
 		}
 
 		this.ev.styled(style);
+	}
+
+	/**
+	 * Set the html attributes of the Element
+	 * @param {string[][]} style Object
+	 * @description Example Input: [["href", "#"], ["onclick", "action()"]]
+	 */
+	setAttribute(attributes) {
+		for (let i = 0; i < attributes.length; i++) {
+			this.element.setAttribute(attributes[i][0], attributes[i][1]);
+		}
 	}
 
 	/**
