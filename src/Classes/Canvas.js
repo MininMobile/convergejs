@@ -31,9 +31,10 @@ class Canvas {
 		this.ev.styled = () => {};
 		this.ev.newElem = () => {};
 		this.ev.loop = () => {};
-		this.ev.onClick = () => {};
-		this.ev.onKeyDown = () => {};
-		this.ev.onKeyUp = () => {};
+		this.ev.mouseDown = () => {};
+		this.ev.mouseUp = () => {};
+		this.ev.keyDown = () => {};
+		this.ev.keyUp = () => {};
 
 		setInterval(() => { this.ev.loop(); }, 1000/this.fps)
 	}
@@ -106,6 +107,14 @@ class Canvas {
 			case "loop":
 				this.ev.loop = action;
 				break;
+			case "mouseDown":
+				this.ev.mouseDown = action;
+			case "mouseUp":
+				this.ev.mouseUp = action;
+			case "keyDown":
+				this.ev.keyDown = action;
+			case "keyUp":
+				this.ev.keyUp = action;
 		}
 	}
 }
