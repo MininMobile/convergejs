@@ -36,6 +36,11 @@ class Canvas {
 		this.ev.keyDown = () => {};
 		this.ev.keyUp = () => {};
 
+		this.c.addEventListener("pointerdown", this.ev.mouseDown);
+		this.c.addEventListener("pointerup", this.ev.mouseUp);
+		document.addEventListener("keydown", this.ev.keyDown);
+		document.addEventListener("keyup", this.ev.keyUp);
+
 		setInterval(() => { this.ev.loop(); }, 1000/this.fps)
 	}
 
